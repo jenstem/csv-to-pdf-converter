@@ -12,3 +12,22 @@ pdf.set_font("Arial", size=14)
 
 
 pdf.add_page()
+
+
+with pdf.table(
+    borders_layout="NO_HORIZONTAL_LINES",
+    cell_fill_color=(224, 235, 255),
+    col_widths=(42, 39, 35, 42),
+    line_height=6,
+    headings_style=headings_style,
+    text_align=("LEFT", "CENTER", "RIGHT", "RIGHT"),
+    width=160,
+
+) as table:
+    for data_row in data:
+        row = table.row()
+        for data_cell in data_row:
+            row.cell(data_cell)
+
+
+pdf.output("table.pdf")
