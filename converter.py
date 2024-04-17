@@ -12,6 +12,9 @@ pdf.set_font("Arial", size=14)
 
 
 pdf.add_page()
+pdf.set_draw_color(255, 0, 0)
+pdf.set_line_width(0.3)
+headings_style = FontFace(emphasis="BOLD", color=255, fill_color=(255, 100, 0))
 
 
 with pdf.table(
