@@ -3,20 +3,35 @@ from fpdf.fonts import FontFace
 import csv
 
 
+"""
+Reads a CSV file and returns its contents as a list of rows.
+"""
 with open("countries.txt", encoding="utf-8") as csv_file:
     data = list(csv.reader(csv_file, delimiter=","))
 
 
+"""
+Initializes the PDFTableGenerator with a new PDF object.
+"""
 pdf = FPDF()
 pdf.set_font("Arial", size=14)
 
 
+"""
+Adds a new page to the PDF document.
+"""
 pdf.add_page()
 pdf.set_draw_color(255, 0, 0)
 pdf.set_line_width(0.3)
 headings_style = FontFace(emphasis="BOLD", color=255, fill_color=(255, 100, 0))
 
 
+"""
+Creates a table in the PDF and populates it with the data.
+
+Args:
+    data (list): A list of rows to populate the table.
+"""
 with pdf.table(
     borders_layout="NO_HORIZONTAL_LINES",
     cell_fill_color=(224, 235, 255),
@@ -33,4 +48,7 @@ with pdf.table(
             row.cell(data_cell)
 
 
+"""
+Outputs the generated PDF to a file.
+"""
 pdf.output("table.pdf")
